@@ -76,5 +76,41 @@ namespace BookSolutionWeb.Controllers
             return View(obj);
 
         }
+        //GET
+        public IActionResult Delete(int? id)
+        {
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+            var categoryFromDb = _db.Categories.Find(id);
+            //var categoryFromDbSingle = _db.Categories.SingleOrDefault(c => c.Id == id); 
+            //var categoryFromDbFirst = _db.Categories.FirstOrDefault(c => c.Id == id);
+            if (categoryFromDb == null)
+            {
+                return NotFound();
+            }
+
+            return View(categoryFromDb);
+        }
+        //Post
+        [HttpPost,ActionName("Delete")]
+        //or you can follow both method according to you
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteCategory(int? id)
+        {
+            var obj = _db.Categories.Find(id);  
+            if(obj == null)
+            {
+                return NotFound(id);  
+            }
+
+            
+                _db.Categories.Remove(obj);
+                _db.SaveChanges();
+                return RedirectToAction("Index");
+           
+
+        }
     }
 }

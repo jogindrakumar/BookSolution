@@ -22,7 +22,7 @@
         <tr>
             <th>Category Name</th>
             <th>Display Order</th>
-            <th>Edit</th>
+            <th>Actions</th>
         </tr>
 <tbody>
             @foreach(var obj in Model)
@@ -35,9 +35,12 @@
                         @obj.DisplayOrder
                     </td>
                     <td>
-                        <div class="w-75 btn-group" role="group">
+                     
                             <a asp-controller="Category" asp-action="Edit" asp-route-id="@obj.Id" class="btn btn-primary mx-1" style="text-decoration:none;"><i class="bi bi-pencil-square"></i> &nbsp; Edit</a>
-                        </div>
+                             <a asp-controller="Category" asp-action="Delete" asp-route-id="@obj.Id" class="btn btn-danger mx-1" style="text-decoration:none;"><i class="bi bi-trash3"></i> &nbsp; Delete</a>
+                        
+                        
+
                     </td>
                 </tr>
             }
