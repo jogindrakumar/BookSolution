@@ -37,6 +37,7 @@ namespace BookSolutionWeb.Controllers
             if (ModelState.IsValid) {
                 _db.Categories.Add(obj);
                 _db.SaveChanges();
+                TempData["success"] = "Category create successfully";
                 return RedirectToAction("Index");
                 }
             return View(obj);
@@ -71,6 +72,7 @@ namespace BookSolutionWeb.Controllers
             {
                 _db.Categories.Update(obj);
                 _db.SaveChanges();
+                TempData["success"] = "Category Updated successfully";
                 return RedirectToAction("Index");
             }
             return View(obj);
@@ -108,7 +110,8 @@ namespace BookSolutionWeb.Controllers
             
                 _db.Categories.Remove(obj);
                 _db.SaveChanges();
-                return RedirectToAction("Index");
+            TempData["success"] = "Category Deleted successfully";
+            return RedirectToAction("Index");
            
 
         }
